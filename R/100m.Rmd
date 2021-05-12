@@ -1,6 +1,6 @@
 ---
 title: "Fastest 100 metre times"
-author: "FILL IN YOUR NAME HERE"
+author: "Team 09: Matt McCoy and Cyrus Tadjiki"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -58,14 +58,14 @@ Unfortunately, the HTML object that we've read into R is old-school text. Luckil
 
 ## 3) Convert to a data frame
 
-## 3.1 ) Read as data frame
+### 3.1 ) Read as data frame
 
 At this point, we basically have one loooong string that we need to convert to a data frame. Please do this and assign the resulting object as `m100`. Don't worry about specifying column names yet.
 
 *Hint: You have two (related) options here: Convert either based on whitespace separation of columns, or fixed-width file format.  The `readr` package provides methods for reading both whitespace-separated columns and fixed-width files. See the [reference guide](https://readr.tidyverse.org/reference/index.html#section-read-rectangular-files) guide for more details. If you opt for the latter, please pay particular attention to the option of guessing the fixed column positions based on the the position of empty columns, as well as how many rows are parsed by default to determine the data frame shape. See the Details and Examples sections of the relevant help documentation.*
 
 
-## 3.2) Inspect and fix (if needed)
+### 3.2) Inspect and fix (if needed)
 
 What does your resulting `m100` data frame look like? Print the first and last few rows to screen so that I can see it too.
 
