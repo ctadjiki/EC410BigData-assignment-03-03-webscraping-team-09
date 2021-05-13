@@ -27,11 +27,11 @@ Here is the webpage: **[All-time men's best 100m](http://www.alltime-athletics.c
 *<b>Note:</b> You are welcome to use the [women's all-time best 100m times](http://www.alltime-athletics.com/w_100ok.htm) if you prefer. However, please be aware that you may (will?) have to adjust some of the specific hints below. It will be become more obvious why once we get to the prediction section of the assignment.*
 
 Now is good time to load any packages that you will be needing, as well as set your preferred plotting theme, etc. 
-
+## Loading Packages
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2)
 ```
 
 
@@ -40,7 +40,6 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 Take a look at the [webpage](http://www.alltime-athletics.com/m_100ok.htm) in your browser. We only want the information contained in the main table at the top (i.e. ignore the rolling starts, manual timing, etc.) Read this table into R and call the resulting object `m100_wp`.
 
 *Hint: In class, we practiced identifying the correct HMTL elements with CSS selectors and SelectorGadget. However, you will almost certainly find it easier / more precise to scrape the table in this example via its XPath. Use your browser's "Inspect" functionality to find and copy over this XPath. Remember to specify the "xpath" argument (instead of the default "css") when pulling this information into R, i.e. `rvest::html_element(xpath = "XPATH_HERE")`.*
-
 
 ## 2) Parse into an R object
 
