@@ -39,6 +39,10 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 ```{r}
 # 2.2 I'm not sure if he wants us to exclude spaces or not. I can't figure out how to exclude spaces if so yet. Maybe the string/grep presenter can help? :)
 # 3.2 What does the hint "Look for an athlete that has the first name "Kareem" for an illustration of what might go wrong." point us to? 
+# Make a header row for variable names for m100
+#
+#
+#
 
 ```
 
