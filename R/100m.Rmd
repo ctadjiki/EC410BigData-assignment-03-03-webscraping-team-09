@@ -48,28 +48,41 @@ base_url = read_html("http://www.alltime-athletics.com/m_100ok.htm")
 
 m100_wp =
   base_url %>%
-  html_element(xpath = "/html/body/center[3]/pre") %>%
-  html_text(m100_wp)
-
-m100_wp
+  html_element(xpath = "/html/body/center[3]/pre")
 ```
 
 ## 2) Parse into an R object
 
 
 ### 2.1) Try parsing with `rvest::html_table()`
+```{r}
+html_table(m100_wp)
+```
 
 With the Wikipedia example from class, we were able to parse an HTML table into a data frame simply by using `rvest::html_table()`. What happens if you try that here?
 
+**We are not able to simply convert this object into a html table because we have one very long string that cannot be put into a neat and tidy table. The Xpath we read everything as is a very long string unlike the Wikipedia table**
 
 ### 2.2. Try parsing with `rvest::html_text()`
-
 Unfortunately, the HTML object that we've read into R is old-school text. Luckily, we can still extract this text pretty easily into an R string. Do that and name the resulting object `m100_text`. Show me the first 1000 characters.
-
 *Hint: The `head()` function works by elements, not characters. So you'll need some other function to show the first 1000 characters.*
+## Parsing object into text
+```{r}
+m100_wp %>%
+ # html_text() %>% #doesn't change object
+  #substr(start = 1, stop = 1000)  
+  
+typeof(m100_wp)
+## I'm not sure if he wants us to exclude spaces or not. I can't figure out how to exclude spaces if so yet. 
+```
 
 
 ## 3) Convert to a data frame
+```{r}
+m100 = 
+  
+```
+
 
 ### 3.1 ) Read as data frame
 
