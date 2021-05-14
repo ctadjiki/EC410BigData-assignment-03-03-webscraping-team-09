@@ -68,19 +68,27 @@ Unfortunately, the HTML object that we've read into R is old-school text. Luckil
 *Hint: The `head()` function works by elements, not characters. So you'll need some other function to show the first 1000 characters.*
 ## Parsing object into text
 ```{r}
-m100_wp %>%
- # html_text() %>% #doesn't change object
-  #substr(start = 1, stop = 1000)  
+m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line 46 first. 
+```
+
+## First 1000 Characters
+```{r}
+head = substr(m100_wp, start = 1, stop = 1000)  
   
-typeof(m100_wp)
+
+#typeof(m100_wp)
+
 ## I'm not sure if he wants us to exclude spaces or not. I can't figure out how to exclude spaces if so yet. 
+head
 ```
 
 
 ## 3) Convert to a data frame
 ```{r}
-m100 = 
+m100 = read_fwf(m100_wp, skip = 1, n_max = 3436)
   
+
+str(m100)
 ```
 
 
