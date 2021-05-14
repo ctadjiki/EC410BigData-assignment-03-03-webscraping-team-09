@@ -41,35 +41,18 @@ Take a look at the [webpage](http://www.alltime-athletics.com/m_100ok.htm) in yo
 
 *Hint: In class, we practiced identifying the correct HMTL elements with CSS selectors and SelectorGadget. However, you will almost certainly find it easier / more precise to scrape the table in this example via its XPath. Use your browser's "Inspect" functionality to find and copy over this XPath. Remember to specify the "xpath" argument (instead of the default "css") when pulling this information into R, i.e. `rvest::html_element(xpath = "XPATH_HERE")`.*
 
+
 ## Load Data
 ```{r}
 base_url = read_html("http://www.alltime-athletics.com/m_100ok.htm")
 
-list <-
+m100_wp =
   base_url %>%
   html_element(xpath = "/html/body/center[3]/pre") %>%
-  html_text(list) 
-#This isn't working I might need to write a function. I started it below from the Craigslist example. 
-  
-list
-```
-
-## Converting to a data frame with function
-```{r}
-#I'm not sure if this is the answer to crating a data frame just a thought. 
-m100_wp <-
-  rbindlist(lapply(
-    seq_along(n),
-    function(i) {
-      start = n[i]
-      end = i = 3080
-      data.table(t(m100_wp[start:end]))
-    }
-  ), fill = TRUE)
+  html_text(m100_wp)
 
 m100_wp
 ```
-
 
 ## 2) Parse into an R object
 
