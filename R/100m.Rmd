@@ -188,7 +188,7 @@ plot1
 
 library(gghighlight)
 
-plot1 + gghighlight(athlete == "Usain Bolt")
+plot1 + gghighlight(athlete == "Usain Bolt") # I get message: "Too many data points, skip labeling"
 
 
 ```
