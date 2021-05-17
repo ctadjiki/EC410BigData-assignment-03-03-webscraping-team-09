@@ -154,6 +154,14 @@ Finally, convert your columns to the correct classes. Date columns should be con
 sapply(m100, class)
 ```
 
+```{r}
+m100$date <- dmy(m100$date)
+
+sapply(m100, class) #confirm that we successfully converted to class: Date
+
+head(m100) #dates are now year-month-day
+```
+
 
 ## 4) Plot the data
 
