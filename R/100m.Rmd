@@ -42,7 +42,7 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 # Make a header row for variable names for m100
 #
 #
-#
+#3.4 i'm not sure if im supposed to convert rank to something. some values are weird like 1rA and 2r3 
 
 ```
 
@@ -157,10 +157,12 @@ sapply(m100, class)
 ```{r}
 m100$date <- dmy(m100$date)
 
+#also need to convert dob
+m100$dob <- dmy(m100$dob)
+
 sapply(m100, class) #confirm that we successfully converted to class: Date
 
 head(m100) #dates are now year-month-day
-
 
 ```
 
