@@ -160,6 +160,18 @@ m100$date <- dmy(m100$date)
 sapply(m100, class) #confirm that we successfully converted to class: Date
 
 head(m100) #dates are now year-month-day
+
+
+```
+
+```{r}
+m100$time <- as.numeric(m100$time)
+
+m100$windspeed <- as.numeric(m100$windspeed)
+
+sapply(m100, class) #confirm that we successfully converted to class: numeric
+
+head(m100) 
 ```
 
 
