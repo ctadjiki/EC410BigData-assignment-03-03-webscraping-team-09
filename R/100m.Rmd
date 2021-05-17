@@ -181,6 +181,18 @@ head(m100)
 
 Plot the data, with the race date on the x-axis and time on the y-axis. Highlight Usain Bolt's times in red.
 
+```{r}
+plot1 <- ggplot(m100, aes(x = date, y = time, color = athlete)) + geom_point() + labs(title="Race time by Date", x = "Race Date", y = "Finish time")
+
+plot1
+
+library(gghighlight)
+
+plot1 + gghighlight(athlete == "Usain Bolt")
+
+
+```
+
 
 ## 5) Subset to fastest times per year
 
