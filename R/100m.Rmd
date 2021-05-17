@@ -150,6 +150,9 @@ head(m100)
 
 Finally, convert your columns to the correct classes. Date columns should be converted to dates, numeric columns should be converted to numeric, etc.
 
+```{r}
+sapply(m100, class)
+```
 
 
 ## 4) Plot the data
