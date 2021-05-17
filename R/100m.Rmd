@@ -190,13 +190,21 @@ library(gghighlight)
 
 plot1 + gghighlight(athlete == "Usain Bolt") # I get message: "Too many data points, skip labeling"
 
-
+#ggplot(m100) + aes(x = date, y = time, color = athlete) + geom_point() + labs(title="Race time by Date", x = "Race Date", y = "Finish time") + gghighlight(athlete == "Usain Bolt")
 ```
 
 
 ## 5) Subset to fastest times per year
 
 It's hard to fit a sensible model to the above data. What might make more sense is to think of 100 metre times as following some kind of (approximately) deterministic process over the years. Subset the data to the fastest time recorded in each year. Call this new data frame `m100_yr` and then repeat the plot above, again highlighting Usain Bolt's times.
+
+```{r}
+m100_fastest <- m100 %>% 
+  group_by(date) 
+   
+
+#ggplot(m100_fastest) + aes(x = date, y = time, color = athlete) + geom_point() + labs(title="Race time by Date", x = "Year", y = "Fastest Time") + gghighlight(athlete == "Usain Bolt")
+```
 
 
 ## 6) Modeling and prediction
