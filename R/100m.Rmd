@@ -186,7 +186,7 @@ plot1 <- ggplot(m100, aes(x = date, y = time, color = athlete)) + geom_point() +
 
 plot1
 
-library(gghighlight)
+# library(gghighlight) #already loaded
 
 plot1 + gghighlight(athlete == "Usain Bolt") # I get message: "Too many data points, skip labeling"
 
