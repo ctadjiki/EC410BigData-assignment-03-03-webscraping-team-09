@@ -138,10 +138,18 @@ Depending on the functions and arguments that you used in the previous question,
 
 You should now (hopefully) have nine columns. Assign them the following names: `c("rank", "time", "windspeed", "athlete", "country", "dob", "race_rank", "location", "date")`.
 
+```{r}
+colnames(m100)<-c("rank", "time", "windspeed", "athlete", "country", "dob", "race_rank", "location", "date") #This replaced the first row
+
+head(m100)
+
+```
+
 
 ### 3.4 Convert columns to correct classes
 
 Finally, convert your columns to the correct classes. Date columns should be converted to dates, numeric columns should be converted to numeric, etc.
+
 
 
 ## 4) Plot the data
