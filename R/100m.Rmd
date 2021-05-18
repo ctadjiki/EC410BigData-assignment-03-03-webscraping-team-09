@@ -230,6 +230,17 @@ Start by fitting a simple regression model of your choice, using data that would
 
 *Hint: I'd advise excluding data from before 1975, since we don't have consecutive or consistent records before then.*
 
+```{r}
+post74pre05_m100 =
+  m100 %>%
+  filter(date > 1975)
+  #filter(date < 2006) # this deletes all our values for some reason :( 
+
+reg = lm(time ~ date, data = post74pre05_m100) #something wrong is happening because we're missing 24 values
+
+summary(reg)
+```
+
 ### 6.2) Prediction
 
 
