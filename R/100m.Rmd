@@ -61,6 +61,8 @@ base_url = read_html("http://www.alltime-athletics.com/m_100ok.htm")
 m100_wp =
   base_url %>%
   html_element(xpath = "/html/body/center[3]/pre")
+
+m100_wp
 ```
 
 ## 2) Parse into an R object
@@ -80,7 +82,9 @@ Unfortunately, the HTML object that we've read into R is old-school text. Luckil
 *Hint: The `head()` function works by elements, not characters. So you'll need some other function to show the first 1000 characters.*
 ## Parsing object into text
 ```{r}
-m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line 46 first. 
+m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line 58 first. 
+
+m100_wp
 ```
 
 ## First 1000 Characters
@@ -100,7 +104,7 @@ first_1000_characters
 ### 3.1 ) Read as data frame
 ```{r}
 #m100 = read_fwf(m100_wp, skip = 1, n_max = 3436)
-m100 = read_table(m100_wp, col_names = TRUE, col_types = NULL, locale = default_locale(),
+m100 = read_table(m100_wp, col_names = FALSE, col_types = NULL, locale = default_locale(),
   na = "NA",
   skip = 1,
   n_max = 3436,
