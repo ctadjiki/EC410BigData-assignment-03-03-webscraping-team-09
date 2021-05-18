@@ -31,7 +31,7 @@ Now is good time to load any packages that you will be needing, as well as set y
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled)
 ```
 
 
@@ -58,11 +58,12 @@ Take a look at the [webpage](http://www.alltime-athletics.com/m_100ok.htm) in yo
 ```{r}
 base_url = read_html("http://www.alltime-athletics.com/m_100ok.htm")
 
+
 m100_wp =
   base_url %>%
   html_element(xpath = "/html/body/center[3]/pre")
 
-m100_wp
+#m100_wp
 ```
 
 ## 2) Parse into an R object
@@ -84,10 +85,10 @@ Unfortunately, the HTML object that we've read into R is old-school text. Luckil
 ```{r}
 m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line 58 first. 
 
-m100_wp
+#m100_wp
 ```
 
-## First 1000 Characters
+### First 1000 Characters
 ```{r}
 first_1000_characters = substr(m100_wp, start = 1, stop = 1000)  
   
@@ -112,8 +113,8 @@ m100 = read_table(m100_wp, col_names = FALSE, col_types = NULL, locale = default
   comment = "",
   skip_empty_rows = TRUE)
   
-str(m100)
-head(m100)
+# str(m100)
+# head(m100)
 ```
 
 At this point, we basically have one loooong string that we need to convert to a data frame. Please do this and assign the resulting object as `m100`. Don't worry about specifying column names yet.
@@ -145,7 +146,7 @@ You should now (hopefully) have nine columns. Assign them the following names: `
 ```{r}
 colnames(m100)<-c("rank", "time", "windspeed", "athlete", "country", "dob", "race_rank", "location", "date") #This replaced the first row
 
-head(m100)
+#head(m100)
 
 ```
 
@@ -177,7 +178,7 @@ m100$windspeed <- as.numeric(m100$windspeed)
 
 sapply(m100, class) #confirm that we successfully converted to class: numeric
 
-head(m100) 
+#head(m100) 
 ```
 
 
@@ -233,13 +234,23 @@ Start by fitting a simple regression model of your choice, using data that would
 ```{r}
 post74pre05_m100 =
   m100 %>%
-  filter(date > 1975)
-  #filter(date < 2006) # this deletes all our values for some reason :( 
+  filter(date > "1975-01-01", date < "2006-01-01")
 
-reg = lm(time ~ date, data = post74pre05_m100) #something wrong is happening because we're missing 24 values
+reg = lm(time ~ date, data = post74pre05_m100)
 
-summary(reg)
+plot6 =
+  ggplot(data = post74pre05_m100, aes(x= date, y = time)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+summary(reg)  
+plot6
+#tab_model(reg) Not sure how nice of a table he wants for our regression 
 ```
+
+$\hat{Y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \epsilon$  
+$Time_i = \beta_0 + \hat{\beta_1}Date_i + \epsilon$  
+$\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$  
 
 ### 6.2) Prediction
 
