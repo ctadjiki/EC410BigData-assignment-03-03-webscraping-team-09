@@ -203,6 +203,8 @@ plot1 + gghighlight(athlete == "Usain Bolt") # I get message: "Too many data poi
 It's hard to fit a sensible model to the above data. What might make more sense is to think of 100 metre times as following some kind of (approximately) deterministic process over the years. Subset the data to the fastest time recorded in each year. Call this new data frame `m100_yr` and then repeat the plot above, again highlighting Usain Bolt's times.
 
 ```{r}
+m100_fastest <- m100 %>% 
+  group_by(date) 
 #Extract Year from the Date-Time Column
 m100_fastest$year <- year(m100_fastest$date)
 #now we have the year for each time
