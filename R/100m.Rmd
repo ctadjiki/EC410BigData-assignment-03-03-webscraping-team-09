@@ -228,8 +228,8 @@ Start by fitting a simple regression model of your choice, using data that would
 
 *Hint: I'd advise excluding data from before 1975, since we don't have consecutive or consistent records before then.*
 
-
 ### 6.2) Prediction
+
 
 Fast forward to the present day. Given your model and the available data in 2005, what year would you have predicted humanity reaching the current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it (i.e. 2009). What do you make of this?
 
