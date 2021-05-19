@@ -39,10 +39,14 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 ```{r}
 # 2.2 I'm not sure if he wants us to exclude spaces or not. I can't figure out how to exclude spaces if so yet. Maybe the string/grep presenter can help? :)
 # 3.2 What does the hint "Look for an athlete that has the first name "Kareem" for an illustration of what might go wrong." point us to? 
-# Make a header row for variable names for m100
 #
 #
 #3.4 i'm not sure if im supposed to convert rank to something. some values are weird like 1rA and 2r3 
+#
+#
+#
+#6.1 Not sure how nice of a table he wants for our regression 
+# Also Overall I wanna double check I'm doing 6.1 correctly
 
 ```
 
@@ -235,7 +239,9 @@ reg = lm(time ~ date, data = post74pre05_m100)
 plot6 =
   ggplot(data = post74pre05_m100, aes(x= date, y = time)) +
   geom_point() +
-  geom_smooth(method = lm)
+  geom_smooth(method = lm) +
+  theme_gray()
+
 
 summary(reg)  
 plot6
@@ -250,6 +256,17 @@ $\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$
 
 
 Fast forward to the present day. Given your model and the available data in 2005, what year would you have predicted humanity reaching the current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it (i.e. 2009). What do you make of this?
+
+```{r}
+# post74pre05_m100 %>%
+#   predict(reg, data.frame(date = 2009-08-16))
+
+b0 = 10.06
+b1 = -0.000002905
+time_exp = b0+b1*(as.numeric(2009-08-16))
+time_exp # two things are wrong. 1. There is probably a more advanced way to write this function I can look back at later 2. The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
+```
+
 
 
 ### 6.3) Plot your results
