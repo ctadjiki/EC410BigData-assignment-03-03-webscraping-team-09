@@ -62,8 +62,6 @@ base_url = read_html("http://www.alltime-athletics.com/m_100ok.htm")
 m100_wp =
   base_url %>%
   html_element(xpath = "/html/body/center[3]/pre")
-
-#m100_wp
 ```
 
 ## 2) Parse into an R object
@@ -71,7 +69,7 @@ m100_wp =
 
 ### 2.1) Try parsing with `rvest::html_table()`
 ```{r}
-html_table(m100_wp)
+html_table(m100_wp) #doesn't run unfortunately 
 ```
 
 With the Wikipedia example from class, we were able to parse an HTML table into a data frame simply by using `rvest::html_table()`. What happens if you try that here?
@@ -83,9 +81,7 @@ Unfortunately, the HTML object that we've read into R is old-school text. Luckil
 *Hint: The `head()` function works by elements, not characters. So you'll need some other function to show the first 1000 characters.*
 ## Parsing object into text
 ```{r}
-m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line 58 first. 
-
-#m100_wp
+m100_wp = html_text(m100_wp) #If not running input must me a vector. Run line ~58 first. 
 ```
 
 ### First 1000 Characters
@@ -113,8 +109,7 @@ m100 = read_table(m100_wp, col_names = FALSE, col_types = NULL, locale = default
   comment = "",
   skip_empty_rows = TRUE)
   
-# str(m100)
-# head(m100)
+head(m100)
 ```
 
 At this point, we basically have one loooong string that we need to convert to a data frame. Please do this and assign the resulting object as `m100`. Don't worry about specifying column names yet.
@@ -146,8 +141,7 @@ You should now (hopefully) have nine columns. Assign them the following names: `
 ```{r}
 colnames(m100)<-c("rank", "time", "windspeed", "athlete", "country", "dob", "race_rank", "location", "date") #This replaced the first row
 
-#head(m100)
-
+head(m100)
 ```
 
 
@@ -178,7 +172,7 @@ m100$windspeed <- as.numeric(m100$windspeed)
 
 sapply(m100, class) #confirm that we successfully converted to class: numeric
 
-#head(m100) 
+head(m100) 
 ```
 
 
