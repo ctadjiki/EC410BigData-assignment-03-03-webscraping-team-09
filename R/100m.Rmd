@@ -306,18 +306,24 @@ tibble2 <- world
 joined_tibble <- left_join(tibble, tibble2, 
               by = c("country" = "iso_a3"))
 
-joined_df <- as.data.frame(joined_tibble)
 
 
 ```
 
 ```{r}
+sapply(joined_tibble, class)
+
 world_plot = 
-  ggplot(joined_df) +
-  geom_sf(aes(geometry = geometry), alpha=0.8, col="white") +
-  scale_fill_viridis_c(name = "Area") +
-  ggtitle("Fastest Times by Country")
+  ggplot(joined_tibble) +
+  geom_sf(aes(geometry = geometry,fill = country), alpha=0.8, col="white") +
+  ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "country")
 world_plot
+
+world_plot2 = 
+  ggplot(joined_tibble) +
+  geom_sf(aes(geometry = geometry, color = athlete), alpha=0.8, col="white") +
+  ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "athlete")
+world_plot2
 ```
 
 
