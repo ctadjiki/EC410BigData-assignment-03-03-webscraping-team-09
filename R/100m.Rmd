@@ -230,11 +230,14 @@ Start by fitting a simple regression model of your choice, using data that would
 *Hint: I'd advise excluding data from before 1975, since we don't have consecutive or consistent records before then.*
 
 ```{r}
+
 post74pre05_m100 =
   m100 %>%
   filter(date > "1975-01-01", date < "2006-01-01")
 
-reg = lm(time ~ date, data = post74pre05_m100)
+#we- estimate the model using a trained sub-sample of the data (1975-2006) and then predict on the full data. 
+
+reg = lm(time ~ date, data = post74pre05_m100) 
 
 plot6 =
   ggplot(data = post74pre05_m100, aes(x= date, y = time)) +
@@ -258,8 +261,12 @@ $\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$
 Fast forward to the present day. Given your model and the available data in 2005, what year would you have predicted humanity reaching the current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it (i.e. 2009). What do you make of this?
 
 ```{r}
+#Now we predict on the full data
+predict(reg, newdata = m100, interval = "prediction") %>%
+  head(5)
+
 # post74pre05_m100 %>%
-#   predict(reg, data.frame(date = 2009-08-16))
+#  predict(reg, data.frame(date = 2009-08-16))
 
 b0 = 10.06
 b1 = -0.000002905
