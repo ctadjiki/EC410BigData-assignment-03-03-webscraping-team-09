@@ -31,7 +31,7 @@ Now is good time to load any packages that you will be needing, as well as set y
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom)
 ```
 
 
@@ -290,6 +290,24 @@ Provide a visual depiction of your prediction model. I basically want you to rep
 Finally, go back to your original `m100` data frame, which contains all the data (i.e. not just the fastest time in each year). I want you to give me a sense of athletic achievement by country (including duplicate observations for the same athlete). Plot a world map, with a colour fill proportional to the number of fastest times that have been contributed by athletes of each country.
 
 *Hint: Use the `sf`-compatible "countries" data frame from the `rnaturalearth` package that I showed you in the spatial lecture. This will come with a column of "iso_a3" country codes that you can match (i.e. join) to the "country" column of the `m100` data frame. There will likely be some mismatches because of inconsistencies in the ISO codes across these data frames. I won't be too strict about this, though you may find the `countrycode::countrycode()` function a helpful alternative.*
+
+```{r}
+library(countrycode)
+m100$country_code <- countrycode(m100$country,origin = 'wb', destination = 'iso3c')
+
+library(rnaturalearth)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+world
+
+tibble <- m100
+tibble2 <- world
+
+joined_tibble <- left_join(tibble, tibble2, 
+              by = c("country" = "iso_a3"))
+
+joined_df <- as.data.frame(joined_tibble)
+```
 
 
 ### 7.2. Interactive map
