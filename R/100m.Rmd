@@ -31,7 +31,7 @@ Now is good time to load any packages that you will be needing, as well as set y
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom, ggplot2, stargazer, table1)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom, ggplot2, stargazer, table1, rgeos)
 ```
 
 
