@@ -31,7 +31,7 @@ Now is good time to load any packages that you will be needing, as well as set y
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom, ggplot2)
 ```
 
 
@@ -234,7 +234,7 @@ Start by fitting a simple regression model of your choice, using data that would
 ```{r}
 
 post74pre05_m100 =
-  m100 %>%
+  m100_fastest2 %>%
   filter(date > "1975-01-01", date < "2006-01-01")
 
 #we- estimate the model using a trained sub-sample of the data (1975-2006) and then predict on the full data. 
@@ -264,7 +264,7 @@ Fast forward to the present day. Given your model and the available data in 2005
 
 ```{r}
 #Now we predict on the full data
-predict(reg, newdata = m100, interval = "prediction") %>%
+predict(reg, newdata = m100_fastest2, interval = "prediction") %>%
   head(5)
 
 # post74pre05_m100 %>%
@@ -283,6 +283,25 @@ time_exp # two things are wrong. 1. There is probably a more advanced way to wri
 Provide a visual depiction of your prediction model. I basically want you to repeat your earlier plot from Question 4, but now with a (95 percent) prediction envelope. The prediction envelope should extend through both the "fitted" (<= 2005) _and_ "predicted" (2006--present) data periods. Make sure that these two periods are clearly demarcated in your plot.
 
 *Hint: geom_smooth() isn't going to help you here because you need to predict out of sample.*
+
+```{r}
+## Alternative to predict(): Use augment() to add .fitted and .resid, as well as 
+## .conf.low and .conf.high prediction interval variables to the data.
+m100_fastest2 = augment(reg, newdata = m100_fastest2, interval = "prediction")
+## Show the new variables (all have a "." prefix)
+m100_fastest2 %>% select(contains("."), everything()) %>% head()
+
+
+m100_fastest2 %>%
+  ggplot(aes(x = date, y = time, col = rank(date)<="2006-01-01", fill = rank(date)<="2006-01-01")) +
+  geom_point(alpha = 0.7) +
+  geom_line(aes(y = .fitted)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3, col = NA) +
+  scale_color_discrete(name = "Pre 2006", aesthetics = c("colour", "fill")) +
+  labs(
+    title = "Predicting Fastest Times by Year"
+    )
+```
 
 
 ## 7) Map
