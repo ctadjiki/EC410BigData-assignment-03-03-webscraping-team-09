@@ -37,16 +37,19 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 
 ## Things to check
 ```{r}
+# 2.2 I'm not sure if he wants us to exclude spaces or not. I can't figure out how to exclude spaces if so yet. Maybe the string/grep presenter can help? :)
+# 3.2 What does the hint "Look for an athlete that has the first name "Kareem" for an illustration of what might go wrong." point us to? 
+#
+#
+#3.4 i'm not sure if im supposed to convert rank to something. some values are weird like 1rA and 2r3 
+#
+#
+#
 #6.1 Not sure how nice of a table he wants for our regression 
-#6.1 Based on the regression lectures slide it looks like he wants a nice one. I'll add that part later. 
+# Also Overall I wanna double check I'm doing 6.1 correctly
 #
 #6.2 We should try and have years on the left to answer "what year would you have predicted humanity reaching the current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it (i.e. 2009). What do you make of this?"
-#
-#6.2 Waiting on clarification from Garret
-#
-#6.3
-# 7.1 figure out how to change country code to a countable number
-# 7.2
+
 ```
 
 
@@ -253,8 +256,8 @@ stargazer(reg, type = "text")
 ```
 
 $\hat{Y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \epsilon$  
-$Time_i = \hat{\beta_0} + \hat{\beta_1}Date_i + \epsilon$  
-$\beta_0 = 10.094$ and $\beta_1 = -0.00002}$  
+$Time_i = \beta_0 + \hat{\beta_1}Date_i + \epsilon$  
+$\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$  
 
 ### 6.2) Prediction
 
@@ -266,15 +269,13 @@ Fast forward to the present day. Given your model and the available data in 2005
 predict(reg, newdata = m100_fastest2, interval = "prediction") %>%
   head(5)
 
-b0 = 10.094
-b1 =  -0.00002
-time_exp = b0+b1*(as.numeric(2009-08-16)) #expected WR when current was set
-#9.58 = b0+b1*(year_exp)
-year_exp = (9.58-b0)/b1
-time_exp  #expected WR when current was set
-year_exp #year expected to reach 9.58
+# post74pre05_m100 %>%
+#  predict(reg, data.frame(date = 2009-08-16))
 
-# The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
+b0 = 10.06
+b1 = -0.000002905
+time_exp = b0+b1*(as.numeric(2009-08-16))
+time_exp # two things are wrong. 1. There is probably a more advanced way to write this function I can look back at later 2. The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
 ```
 
 
@@ -333,22 +334,22 @@ joined_tibble <- left_join(tibble, tibble2,
 ```
 
 ```{r}
-sapply(joined_tibble, class)
+
+library(plyr)
+count(m100$country)
 
 world_plot = 
   ggplot(joined_tibble) +
   geom_sf(aes(geometry = geometry,fill = country), alpha=0.8, col="white") +
-  ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "country")
+  ggtitle("Fastest Times by Country") + scale_fill_viridis_d(name = "country")
 world_plot
 
-world_plot2 = 
-  ggplot(joined_tibble) +
-  geom_sf(aes(geometry = geometry, color = athlete), alpha=0.8, col="white") +
-  ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "athlete")
-world_plot2
+
 ```
 
 
 ### 7.2. Interactive map
 
 A major downside of the above static map is that some powerhouses of world athletics are geographically tiny nations in the Caribbean, which are very hard to see. One way to overcome this is to plot an interactive map using **leaflet** or one of the derivative packages that we discussed in the spatial lecture.
+
+
