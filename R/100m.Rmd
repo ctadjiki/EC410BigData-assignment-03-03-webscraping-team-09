@@ -260,20 +260,23 @@ $\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$
 
 
 Fast forward to the present day. Given your model and the available data in 2005, what year would you have predicted humanity reaching the current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it (i.e. 2009). What do you make of this?
-
 ```{r}
 #Now we predict on the full data
 predict(reg, newdata = m100_fastest2, interval = "prediction") %>%
   head(5)
 
-# post74pre05_m100 %>%
-#  predict(reg, data.frame(date = 2009-08-16))
-
-b0 = 10.06
-b1 = -0.000002905
-time_exp = b0+b1*(as.numeric(2009-08-16))
-time_exp # two things are wrong. 1. There is probably a more advanced way to write this function I can look back at later 2. The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
+b0 = 10.094
+b1 = -0.00002
+time_exp = b0+b1*(as.numeric(2009)) #expected WR when current was set
+#9.58 = b0+b1*(year_exp)
+year_exp = (9.58-b0)/b1
+time_exp  #expected WR when current was set
+year_exp #year expected to reach 9.58
 ```
+
+Based on on our prediction model of data from 1975-2005 the world record should have decreased by 0.00002 seconds every year. If this marginal decease were 100% true then then the year that the WR should be **25,700**. I highly doubt that Usain Bolt is a time traveler. Time travel requires 1.21 gigawatts of power and needs to travel 88 miles per hour to initiate time travel. He would also require a flux capacitor which is what makes time travel possible. 
+
+I don't think you can be very certain when estimating humans behavior. Yes we are analyzing human performance which is much more quantifiable but my explanation for Usain Bolt setting such a incredible World Record is that his human behavior is very positive mindset focused. Usain is famous for his smile and incredible attitude for sprinting. If we were to further analyze his acceleration as the race continues there would be even more inconsistency because of his historically slow starts. I believe the reason that Usain Bolt set such a fast world record time is due to his positive mindset about racing and potentially a combination of borderline legal/illegal steroids. 
 
 
 
