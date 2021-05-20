@@ -254,7 +254,7 @@ stargazer(reg, type = "text")
 
 $\hat{Y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \epsilon$  
 $Time_i = \hat{\beta_0} + \hat{\beta_1}Date_i + \epsilon$  
-$\beta_0 = 1.006*10^{1}$ and $\beta_1 = -2.905*10^{-6}$  
+$\beta_0 = 10.094$ and $\beta_1 = -0.00002}$  
 
 ### 6.2) Prediction
 
@@ -266,13 +266,15 @@ Fast forward to the present day. Given your model and the available data in 2005
 predict(reg, newdata = m100_fastest2, interval = "prediction") %>%
   head(5)
 
-# post74pre05_m100 %>%
-#  predict(reg, data.frame(date = 2009-08-16))
+b0 = 10.094
+b1 =  -0.00002
+time_exp = b0+b1*(as.numeric(2009-08-16)) #expected WR when current was set
+#9.58 = b0+b1*(year_exp)
+year_exp = (9.58-b0)/b1
+time_exp  #expected WR when current was set
+year_exp #year expected to reach 9.58
 
-b0 = 10.06
-b1 = -0.000002905
-time_exp = b0+b1*(as.numeric(2009-08-16))
-time_exp # two things are wrong. 1. There is probably a more advanced way to write this function I can look back at later 2. The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
+# The expected time shouldn't be above 10 second by 2009. I think that's a bit slow. Could be a rounding error. 
 ```
 
 
