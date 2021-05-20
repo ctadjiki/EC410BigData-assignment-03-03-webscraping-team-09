@@ -336,12 +336,15 @@ joined_tibble <- left_join(tibble, tibble2,
 ```{r}
 
 library(plyr)
-count(m100$country)
+country_count <- count(m100$country)
+colnames(country_count)<-c("country", "occurance")
+
+new_data <- left_join(country_count, joined_tibble, by = "country")
 
 world_plot = 
-  ggplot(joined_tibble) +
-  geom_sf(aes(geometry = geometry,fill = country), alpha=0.8, col="white") +
-  ggtitle("Fastest Times by Country") + scale_fill_viridis_d(name = "country")
+  ggplot(new_data) +
+  geom_sf(aes(geometry = geometry,fill = occurance), alpha=0.8, col="white") +
+  ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "occurance")
 world_plot
 
 
