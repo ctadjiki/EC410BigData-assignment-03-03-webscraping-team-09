@@ -347,4 +347,17 @@ world_plot
 
 A major downside of the above static map is that some powerhouses of world athletics are geographically tiny nations in the Caribbean, which are very hard to see. One way to overcome this is to plot an interactive map using **leaflet** or one of the derivative packages that we discussed in the spatial lecture.
 
+```{r}
+leafletCRS(  crsClass = "L.CRS.EPSG3857",
+  code = NULL,
+  proj4def = NULL,
+  projectedBounds = NULL,
+  origin = NULL,
+  transformation = NULL,
+  scales = NULL,
+  resolutions = NULL,
+  bounds = NULL,
+  tileSize = NULL)
+```
+
 
