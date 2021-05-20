@@ -37,15 +37,7 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 
 ## Things to check
 ```{r}
-#6.1 Not sure how nice of a table he wants for our regression 
 #6.1 Based on the regression lectures slide it looks like he wants a nice one. I'll add that part later.
-#
-#6.2 We should try and have years on the left to answer "what year would you have predicted humanity reaching the #current world record time of 9.58 seconds? How does this compare with the year that Usain Bolt actually set it #(i.e. 2009). What do you make of this?"
-#
-#6.2 Waiting on clarification from Garret
-#
-#6.3
-# 7.1 figure out how to change country code to a countable number
 # 7.2
 ```
 
@@ -247,7 +239,7 @@ plot6 =
 
 summary(reg)  
 plot6
-#tab_model(reg) #Not sure how nice of a table he wants for our regression 
+tab_model(reg) #Not sure how nice of a table he wants for our regression 
 
 stargazer(reg, type = "text")
 ```
