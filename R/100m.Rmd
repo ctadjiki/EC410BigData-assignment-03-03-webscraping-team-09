@@ -262,7 +262,7 @@ time_exp  #expected WR when current was set
 year_exp #year expected to reach 9.58
 ```
 
-Based on on our prediction model of data from 1975-2005 the world record should have decreased by 0.00002 seconds every year. If this marginal decease were 100% true then then the year that the WR should be **25,700**. I highly doubt that Usain Bolt is a time traveler. Time travel requires 1.21 gigawatts of power and needs to travel 88 miles per hour to initiate time travel. He would also require a flux capacitor which is what makes time travel possible. 
+Based on on our prediction model of data from 1975-2005 the world record should have decreased by 0.00002 seconds every year. If this marginal decease were true then the year that the current World Record should be set is **25,700**. I highly doubt that Usain Bolt is a time traveler. Time travel requires 1.21 gigawatts of power and needs to travel 88 miles per hour to initiate time travel. It also requires a flux capacitor which is what makes time travel possible. 
 
 I don't think you can be very certain when estimating humans behavior. Yes we are analyzing human performance which is much more quantifiable but my explanation for Usain Bolt setting such a incredible World Record is that his human behavior is very positive mindset focused. Usain is famous for his smile and incredible attitude for sprinting. If we were to further analyze his acceleration as the race continues there would be even more inconsistency because of his historically slow starts. I believe the reason that Usain Bolt set such a fast world record time is due to his positive mindset about racing and potentially a combination of borderline legal/illegal steroids. 
 
