@@ -31,7 +31,7 @@ Now is good time to load any packages that you will be needing, as well as set y
 ```{r libs, cache=F, message=F}
 ## Load your packages here, e.g.
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, sjPlot, sjmisc, sjlabelled, broom, ggplot2, stargazer, table1, rgeos)
+pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, sf, tidyverse, data.table, hrbrthemes, lwgeom, rnaturalearth, maps, mapdata, spData, tigris, tidycensus, leaflet, mapview, tmap, tmaptools, xml2, gghighlight, devtools, sjmisc, sjlabelled, broom, ggplot2, stargazer, table1, rgeos, statmod)
 ```
 
 
@@ -221,7 +221,7 @@ Start by fitting a simple regression model of your choice, using data that would
 *Hint: I'd advise excluding data from before 1975, since we don't have consecutive or consistent records before then.*
 
 ```{r}
-
+library(sjPlot)
 post74pre05_m100 =
   m100_fastest2 %>%
   filter(date > "1975-01-01", date < "2006-01-01")
@@ -236,12 +236,9 @@ plot6 =
   geom_smooth(method = lm) +
   theme_gray()
 
-
-summary(reg)  
 plot6
-tab_model(reg) #Not sure how nice of a table he wants for our regression 
-
-stargazer(reg, type = "text")
+#stargazer(reg, type = "text")
+tab_model(reg, digits = 7)
 ```
 
 $\hat{Y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \epsilon$  
