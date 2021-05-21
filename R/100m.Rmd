@@ -223,7 +223,7 @@ library(sjPlot)
 
 post74pre05_m100 =
   m100_fastest2 %>%
-  filter(date > "1976-01-01", date < "2006-01-01")
+  filter(year > "1975", year <= "2005")
 
 #we- estimate the model using a trained sub-sample of the data (1975-2006) and then predict on the full data. 
 
@@ -335,7 +335,6 @@ world_plot =
   ggtitle("Fastest Times by Country") + scale_fill_viridis_c(name = "occurance")
 world_plot
 
-
 ```
 
 
@@ -348,7 +347,7 @@ leafletCRS(  crsClass = "L.CRS.EPSG3857",
   code = NULL,
   proj4def = NULL,
   projectedBounds = NULL,
-  origin = NULL,
+  origin = "NULL",
   transformation = NULL,
   scales = NULL,
   resolutions = NULL,
@@ -356,4 +355,10 @@ leafletCRS(  crsClass = "L.CRS.EPSG3857",
   tileSize = NULL)
 ```
 
+```{r}
+plot7 <- leaflet() %>%
+  addMapPane( world_plot) %>%
+  addMarkers(world_plot, lng = 18.1096, lat= 77.2975 , popup="Powerhouses of World Athletics")
+plot7  
+```
 
