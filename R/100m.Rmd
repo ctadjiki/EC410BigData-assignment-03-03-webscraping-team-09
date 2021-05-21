@@ -357,16 +357,17 @@ leafletCRS(  crsClass = "L.CRS.EPSG3857",
 
 ```{r}
 
-#new_df <- as.data.frame(new_data)
 #new_data <- as_tibble(new_data)
 
+#new_df <- as.data.frame(new_data)
 
-#factpal <- colorFactor("Blues", new_data$occurance)
+
+factpal <- colorFactor("Blues", new_data$occurance)
 
 plot7 <- leaflet(new_data) %>%
   addTiles() %>%
   addMarkers(lng = -77.2975, lat= 18.1096 , popup="Powerhouses of World Athletics") %>%
-  addProviderTiles(providers$Esri.NatGeoWorldMap)  #%>%
+  addProviderTiles(providers$Esri.NatGeoWorldMap) #%>%
   #addPolylines()%>%
   #addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
     #color = ~factpal(occurance)) 
