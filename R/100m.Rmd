@@ -205,8 +205,6 @@ m100_fastest2 <- m100_fastest %>%
    
 
 ggplot(m100_fastest2) + aes(x = date, y = time, color = athlete) + geom_point() + labs(title="Race time by Date", x = "Year", y = "Fastest Time") + gghighlight(athlete == "Usain Bolt")
-
-#Because we lost the first row we do not have the fastest time of all time set by Usain Bolt
 ```
 
 
@@ -222,9 +220,10 @@ Start by fitting a simple regression model of your choice, using data that would
 
 ```{r}
 library(sjPlot)
+
 post74pre05_m100 =
   m100_fastest2 %>%
-  filter(date > "1975-01-01", date < "2006-01-01")
+  filter(date > "1976-01-01", date < "2006-01-01")
 
 #we- estimate the model using a trained sub-sample of the data (1975-2006) and then predict on the full data. 
 
