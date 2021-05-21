@@ -357,8 +357,24 @@ leafletCRS(  crsClass = "L.CRS.EPSG3857",
 
 ```{r}
 plot7 <- leaflet() %>%
-  addMapPane( world_plot) %>%
-  addMarkers(world_plot, lng = 18.1096, lat= 77.2975 , popup="Powerhouses of World Athletics")
+  addTiles() %>%
+  addProviderTiles(
+  map = world,
+  provider = CartoDB.Positron,
+  layerId = NULL,
+  group = NULL,
+  options = providerTileOptions()
+)
+
+providerTileOptions(
+  errorTileUrl = "",
+  noWrap = FALSE,
+  opacity = NULL,
+  zIndex = NULL,
+  updateWhenIdle = NULL,
+  detectRetina = FALSE,
+  ...
+)
+  addMarkers(lng = -77.2975, lat= 18.1096 , popup="Powerhouses of World Athletics")
 plot7  
 ```
-
