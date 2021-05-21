@@ -37,7 +37,7 @@ pacman::p_load(lubridate, janitor, rvest, jsonlite, fredr, listviewer, usethis, 
 
 ## Things to check
 ```{r}
-#6.1 Based on the regression lectures slide it looks like he wants a nice one. I'll add that part later.
+#6.1 We should be getting a larger pvalue
 # 7.2
 ```
 
